@@ -1,0 +1,400 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Hospital API"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Patient",
+            "description": "API for patients"
+        },
+        {
+            "name": "Appointment",
+            "description": "API for appointments"
+        },
+        {
+            "name": "Hospital",
+            "description": "API for hospital"
+        }
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/patient": {
+            "get": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "Get all patients",
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Patients"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "Add patient",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/PatientRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Patient"
+                        }
+                    }
+                }
+            }
+        },
+        "/patient/:id": {
+            "get": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "Get patient by id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Patient ID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Patient"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "Update patient",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Patient ID"
+                    },
+                    {
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/PatientRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Patient"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Patient"
+                ],
+                "summary": "Delete patient",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Patient ID"
+                    }
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/appointment": {
+            "get": {
+                "tags": [
+                    "Appointment"
+                ],
+                "summary": "Get all appointments",
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Appointments"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Appointment"
+                ],
+                "summary": "Add Appointment",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/AppointmentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Appointment"
+                        }
+                    }
+                }
+            }
+        },
+        "/appointment/unpaid": {
+            "get": {
+                "tags": [
+                    "Appointment"
+                ],
+                "summary": "Get unpaid appointments",
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Appointments"
+                        }
+                    }
+                }
+            }
+        },
+        "/appointment/unpaid/:id": {
+            "get": {
+                "tags": [
+                    "Appointment"
+                ],
+                "summary": "Get unpaid appointments by patient",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Patient ID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Appointments"
+                        }
+                    }
+                }
+            }
+        },
+        "/appointment/:id": {
+            "get": {
+                "tags": [
+                    "Appointment"
+                ],
+                "summary": "Get appointment by id",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Appointment ID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Appointment"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Appointment"
+                ],
+                "summary": "Update appointment",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Patient ID"
+                    },
+                    {
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/AppointmentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Appointment"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Appointment"
+                ],
+                "summary": "Delete appointment",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Patient ID"
+                    }
+                ],
+                "responses": {
+                    "200": {}
+                }
+            }
+        },
+        "/hospital/balance": {
+            "get": {
+                "tags": [
+                    "Hospital"
+                ],
+                "summary": "Get weekly balance",
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Balances"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Patient": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "petName": {
+                    "type": "string"
+                },
+                "petType": {
+                    "type": "string"
+                }
+            }
+        },
+        "PatientRequest": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "petName": {
+                    "type": "string"
+                },
+                "petType": {
+                    "type": "string"
+                }
+            }
+        },
+        "Appointment": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "patient": {
+                    "type": "string"
+                },
+                "startTime": {
+                    "type": "string"
+                },
+                "endTime": {
+                    "type": "string"
+                },
+                "fee": {
+                    "type": "number"
+                },
+                "feeCurrency": {
+                    "type": "string"
+                },
+                "isFeePaid": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "AppointmentRequest": {
+            "properties": {
+                "patient": {
+                    "type": "string"
+                },
+                "startTime": {
+                    "type": "string"
+                },
+                "endTime": {
+                    "type": "string"
+                },
+                "fee": {
+                    "type": "number"
+                },
+                "feeCurrency": {
+                    "type": "string"
+                },
+                "isFeePaid": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Balance": {
+            "properties": {
+                "startDate": {
+                    "type": "string"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "balance": {
+                    "type": "number"
+                }
+            }
+        },
+        "Patients": {
+            "type": "array",
+            "$ref": "#/definitions/Patient"
+        },
+        "Appointments": {
+            "type": "array",
+            "$ref": "#/definitions/Appointment"
+        },
+        "Balances": {
+            "type": "array",
+            "$ref": "#/definitions/Balance"
+        }
+    }
+}
