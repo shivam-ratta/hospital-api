@@ -29,7 +29,6 @@ export = {
                 appointments.forEach(el => {
                     const elTime = moment(el.startTime).startOf('day').toDate();
                     if (startDate < elTime && endDate >= elTime && el.fee && rates[el.feeCurrency.toUpperCase()]) {
-                        console.log(rates[el.feeCurrency.toUpperCase()])
                         balance += el.fee / rates[el.feeCurrency.toUpperCase()];
                     }
                 })
